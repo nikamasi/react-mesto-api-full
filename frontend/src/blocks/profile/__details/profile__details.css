@@ -1,0 +1,31 @@
+.profile__details {
+  display: inline-grid;
+  grid-template-areas:
+    "pic name btn"
+    "pic bio .";
+  justify-content: start;
+  align-items: center;
+  margin-right: 30px;
+  column-gap: 18px;
+}
+
+@media screen and (min-width: 480px) and (max-width: 1023px) {
+  .profile__details {
+    margin-left: 15px;
+    margin-right: 15px;
+  }
+}
+
+@media screen and (max-width: 479px) {
+  .profile__details {
+    margin: 0;
+    grid-template-areas:
+    ". pic ."
+    ". name btn"
+    ". bio .";
+    padding-left: 18px;
+    align-items: center;
+    justify-items: center;
+    column-gap: 10px;
+  }
+}

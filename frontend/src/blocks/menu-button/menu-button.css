@@ -1,0 +1,7 @@
+.menu-button {
+  display: none;
+}
+
+.menu-button:hover {
+  cursor: pointer;
+}

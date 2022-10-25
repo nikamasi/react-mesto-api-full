@@ -1,0 +1,10 @@
+@media (max-width: 768px) {
+  .header__hidden-menu {
+    width: 100%;
+    margin: 40px auto 22px;
+    grid-area: nav;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+  }
+}

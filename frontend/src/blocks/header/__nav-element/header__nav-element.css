@@ -1,0 +1,14 @@
+.header__nav-element {
+  color: white;
+  margin: 0 0 0 24px;
+  text-decoration: none;
+  background: none;
+  border: none;
+}
+
+@media (max-width: 768px) {
+  .header__nav-element {
+    margin-bottom: 18px;
+    margin-left: 0;
+  }
+}

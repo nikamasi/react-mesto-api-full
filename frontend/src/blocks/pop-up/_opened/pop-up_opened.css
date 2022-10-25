@@ -1,0 +1,24 @@
+.pop-up_opened {
+  display: block;
+  visibility: visible;
+  -webkit-animation: fadein 1s;
+  animation: fadein 0.5s linear forwards;
+}
+
+@-webkit-keyframes fadein {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes fadein {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

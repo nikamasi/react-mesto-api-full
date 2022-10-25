@@ -1,0 +1,32 @@
+.pop-up__close-button {
+  background-image: url("../../../images/close.png");
+  background-position: right;
+  background-repeat: no-repeat;
+  background-size: contain;
+  width: 32px;
+  height: 32px;
+  background-color: rgba(0, 0, 0, 0);
+  border: none;
+  padding: 0;
+  position: absolute;
+  top: -40px;
+  right: -40px;
+}
+
+@media screen and (min-width: 480px) and (max-width: 767px) {
+  .pop-up__close-button {
+    width: 25px;
+    height: 25px;
+    top: -33px;
+    right: -33px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .pop-up__close-button {
+    width: 20px;
+    height: 20px;
+    top: -36px;
+    right: 0px;
+  }
+}

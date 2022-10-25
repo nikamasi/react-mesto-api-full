@@ -1,0 +1,23 @@
+.header {
+  width: 90%;
+  max-width: 880px;
+  min-width: 320px;
+  border-bottom: solid 1px rgba(84, 84, 84, 0.7);
+  box-sizing: border-box;
+  padding: 45px 0 35px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+}
+
+@media screen and (max-width: 768px) {
+  .header {
+    width: 100%;
+    padding: 28px 23px;
+    display: grid;
+    grid-template-areas:
+      "nav nav"
+      "logo close";
+    align-items: center;
+  }
+}

@@ -1,0 +1,9 @@
+.gallery__item-remove-button {
+  background-image: url("../../../images/gallery__item-remove-button.png");
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 19px;
+  height: 19px;
+  display: none;
+}

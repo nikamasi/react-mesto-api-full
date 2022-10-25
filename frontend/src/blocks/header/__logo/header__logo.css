@@ -1,0 +1,15 @@
+.header__logo {
+  max-width: 142px;
+}
+
+@media (max-width: 768px) {
+  .header__logo {
+    grid-area: logo;
+  }
+}
+
+@media screen and (max-width: 479px) {
+  .header__logo {
+    width: 103px;
+  }
+}

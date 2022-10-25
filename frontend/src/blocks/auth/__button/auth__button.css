@@ -1,0 +1,14 @@
+.auth__button {
+  width: 100%;
+  box-sizing: border-box;
+  background-color: white;
+  height: 50px;
+  color: black;
+  font-size: 18px;
+  text-align: center;
+  line-height: 22px;
+  padding: 0;
+  border: none;
+  margin-bottom: 15px;
+  margin-top: 186px;
+}

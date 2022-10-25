@@ -1,0 +1,86 @@
+/* body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+} */
+@import url("./vendor/normalize.css");
+@import url("./vendor/fonts/inter/inter.css");
+
+@import url("./blocks/root/root.css");
+@import url("./blocks/content/content.css");
+@import url("./blocks/button/button.css");
+
+@import url("./blocks/header/header.css");
+@import url("./blocks/header/__logo/header__logo.css");
+
+@import url("./blocks/header/__nav/header__nav.css");
+@import url("./blocks/header/__nav-element/header__nav-element.css");
+@import url("./blocks/header/__nav-element/_dark/header__nav-element_dark.css");
+@import url("./blocks/header/hidden-menu/header__hidden-menu.css");
+@import url("./blocks/header/hidden-menu/_active/header__hidden-menu_active.css");
+
+@import url("./blocks/profile/profile.css");
+@import url("./blocks/profile/__add-button/profile__add-button.css");
+@import url("./blocks/profile/__edit-button/profile__edit-button.css");
+@import url("./blocks/profile/__details/profile__details.css");
+@import url("./blocks/profile/__name/profile__name.css");
+@import url("./blocks/profile/__pic/profile__pic.css");
+@import url("./blocks/profile/__bio/profile__bio.css");
+@import url("./blocks/profile/__pic-edit-button/profile__pic-edit-button.css");
+@import url("./blocks/profile/__pic-element/profile__pic-element.css");
+
+@import url("./blocks/pop-up/pop-up.css");
+@import url("./blocks/pop-up/__container/pop-up__container.css");
+@import url("./blocks/pop-up/__close-button/pop-up__close-button.css");
+@import url("./blocks/pop-up/__form/pop-up__form.css");
+@import url("./blocks/pop-up/__input/pop-up__input.css");
+@import url("./blocks/pop-up/__input/_invalid/pop-up__input_invalid.css");
+@import url("./blocks/pop-up/__save-button/pop-up__save-button.css");
+@import url("./blocks/pop-up/__save-button/_disabled/pop-up__save-button_disabled.css");
+@import url("./blocks/pop-up/__title/pop-up__title.css");
+@import url("./blocks/pop-up/_opened/pop-up_opened.css");
+@import url("./blocks/pop-up/__error-message/pop-up__error-message.css");
+@import url("./blocks/pop-up/__error-message/_visible/pop-up__error-message_visible.css");
+@import url("./blocks/pop-up/__title/_delete/pop-up__title_delete.css");
+@import url("./blocks/pop-up/__title/_auth/pop-up__title_auth.css");
+@import url("./blocks/pop-up/__logo/pop-up__logo.css");
+
+@import url("./blocks/gallery/gallery.css");
+@import url("./blocks/gallery/__item/gallery__item.css");
+@import url("./blocks/gallery/__item-name/gallery__item-name.css");
+@import url("./blocks/gallery/__image/gallery__image.css");
+@import url("./blocks/gallery/__caption/gallery__caption.css");
+@import url("./blocks/gallery/__like-button/gallery__like-button.css");
+@import url("./blocks/gallery/__like-button/_active/gallery__like-button_active.css");
+@import url("./blocks/gallery/__item-remove-button/gallery__item-remove-button.css");
+@import url("./blocks/gallery/__item-remove-button/_active/gallery__item-remove-button_active.css");
+@import url("./blocks/gallery/__likes/gallery__likes.css");
+@import url("./blocks/gallery/__like-number/gallery__like-number.css");
+
+@import url("./blocks/image-view/image-view.css");
+@import url("./blocks/image-view/__image/image-view__image.css");
+@import url("./blocks/image-view/__name/image-view__name.css");
+
+@import url("./blocks/auth/auth.css");
+@import url("./blocks/auth/__button/auth__button.css");
+@import url("./blocks/auth/__container/auth__container.css");
+@import url("./blocks/auth/__header/auth__header.css");
+@import url("./blocks/auth/__input/auth__input.css");
+@import url("./blocks/auth/__link/auth__link.css");
+
+@import url("./blocks/menu-button/menu-button.css");
+@import url("./blocks/menu-button/__bar/menu-button__bar.css");
+@import url("./blocks/menu-button/_burger/menu-button_burger.css");
+@import url("./blocks/menu-button/_close/menu-button_close.css");
+
+@import url("./blocks/footer/footer.css");
+
+@import url("./blocks/link/link.css")

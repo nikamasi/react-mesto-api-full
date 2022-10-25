@@ -1,0 +1,8 @@
+.gallery__image {
+  object-fit: cover;
+  height: 78%;
+}
+
+.gallery__image:hover {
+  cursor: pointer;
+}

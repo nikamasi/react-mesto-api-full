@@ -1,0 +1,15 @@
+.profile__pic-element {
+  grid-area: pic;
+  position: relative;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+}
+
+.profile__pic-element:hover .profile__pic {
+  opacity: 0.3;
+}
+
+.profile__pic-element:hover .profile__pic-edit-button {
+  opacity: 1;
+}
