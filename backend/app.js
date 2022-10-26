@@ -18,8 +18,9 @@ mongoose.connect('mongodb://localhost:27017/mestodb', {
   useUnifiedTopology: false,
 });
 
-app.use(express.json());
 app.use(requestLogger);
+app.use(cors);
+app.use(express.json());
 
 app.post('/signup', celebrate({
   body: Joi.object().keys({
@@ -43,8 +44,6 @@ app.use('/cards', auth, cardsRouter);
 app.use((req, res, next) => {
   next(new NotFoundError('Invalid URL or request method.'));
 });
-
-app.use(cors);
 
 app.use(errorLogger);
 

@@ -57,7 +57,7 @@ const likeCard = (req, res, next) => {
       if (!data) {
         return next(new NotFoundError('A picture with this id does not exist'));
       }
-      return res.send({ message: data });
+      return res.send(data);
     })
     .catch((e) => {
       if (e.name === 'CastError') {

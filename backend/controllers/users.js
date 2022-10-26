@@ -97,7 +97,7 @@ const updateAvatar = (req, res, next) => {
       if (!data) {
         next(new NotFoundError('User not found'));
       }
-      return res.send({ data });
+      return res.send(data);
     })
     .catch(next);
 };

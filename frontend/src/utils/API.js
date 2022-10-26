@@ -15,35 +15,45 @@ class API {
   }
 
   getInitialCards() {
-    return fetch(`${this._url}/cards`, { headers: this._headers }).then((res) =>
+    return fetch(`${this._url}/cards`, { headers: {
+      ...this._headers,
+      "Authorization": `Bearer ${localStorage.getItem("jwt")}`
+    }, }).then((res) =>
       this._handleResponse(res, "Ошибка при получении карточек")
-    );
+    ).then((res) => res);
   }
 
   getUserInfo() {
-    return fetch(`${this._url}/users/me`, { headers: this._headers }).then(
-      (res) =>
-        this._handleResponse(res, "Ошибка при получении данных пользователя.")
-    );
+    return fetch(`${this._url}/users/me`, { headers: {
+      ...this._headers,
+      "Authorization": `Bearer ${localStorage.getItem("jwt")}`
+    }, }).then(
+      (res) => this._handleResponse(res, "Ошибка при получении данных пользователя.")
+    ).then((res) => res);
   }
 
   saveUserInfo(name, about) {
     return fetch(`${this._url}/users/me`, {
       method: "PATCH",
-      headers: this._headers,
+      headers: {
+        ...this._headers,
+        "Authorization": `Bearer ${localStorage.getItem("jwt")}`,
+      },
       body: JSON.stringify({
         name: name,
         about: about,
-      }),
-    }).then((res) =>
-      this._handleResponse(res, "Ошибка при сохранении данных пользователя.")
-    );
+      })
+    }).then((res) => this._handleResponse(res, "Ошибка при сохранении данных пользователя.")
+    ).then((res) => res);
   }
 
   saveImage(name, src) {
     return fetch(`${this._url}/cards`, {
       method: "POST",
-      headers: this._headers,
+      headers: {
+        ...this._headers,
+        "Authorization": `Bearer ${localStorage.getItem("jwt")}`
+      },
       body: JSON.stringify({
         name: name,
         link: src,
@@ -56,48 +66,62 @@ class API {
   deleteImage(id) {
     return fetch(`${this._url}/cards/${id}`, {
       method: "DELETE",
-      headers: this._headers,
+      headers: {
+        ...this._headers,
+        "Authorization": `Bearer ${localStorage.getItem("jwt")}`
+      },
     }).then((res) =>
       this._handleResponse(res, "Ошибка при удалении изображения.")
     );
   }
 
-  changeLikeCardStatus(cardId, toLike, userId) {
-    return toLike ? this._like(cardId, userId) : this._unlike(cardId, userId);
+  changeLikeCardStatus(cardId, toLike) {
+    return toLike ? this._like(cardId) : this._unlike(cardId);
   }
 
-  _like(id, user) {
+  _like(id) {
     return fetch(`${this._url}/cards/${id}/likes`, {
       method: "PUT",
-      headers: this._headers,
-      body: JSON.stringify({
-        likes: user,
-      }),
-    }).then((res) => this._handleResponse(res, "Ошибка при удалении лайка."));
+      headers: {
+        ...this._headers,
+        "Authorization": `Bearer ${localStorage.getItem("jwt")}`
+      }
+    })
+    .then((res) => this._handleResponse(res, "Ошибка при отправке лайка"))
+    .then((res) => res);
   }
 
-  _unlike(id, user) {
+  _unlike(id) {
     return fetch(`${this._url}/cards/${id}/likes`, {
       method: "DELETE",
-      headers: this._headers,
-      body: JSON.stringify({
-        likes: user,
-      }),
-    }).then((res) => this._handleResponse(res, "Ошибка при отправке лайка."));
+      headers: {
+        ...this._headers,
+        "Authorization": `Bearer ${localStorage.getItem("jwt")}`
+      }
+    })
+    .then((res) => this._handleResponse(res, "Ошибка при отправке лайка"))
+    .then((res) => res);
   }
 
   changeAvatar(link, user) {
     return fetch(`${this._url}/users/me/avatar`, {
       method: "PATCH",
-      headers: this._headers,
+      headers: {
+        ...this._headers,
+        "Authorization": `Bearer ${localStorage.getItem("jwt")}`
+      },
       body: JSON.stringify({
         avatar: link,
       }),
-    }).then((res) => this._handleResponse(res, "Ошибка при отправке ссылки."));
+    })
+    .then((res) => this._handleResponse(res, "Ошибка при отправке ссылки."))
+    .then((res) => res);
   }
 }
 
 export const api = new API({
-  baseUrl: "https://api.angel.nomoredomains.icu",
-  headers: "",
+  baseUrl: "http://api.angel.nomoredomains.icu",
+  headers: {
+    "Content-Type": "application/json"
+  }
 });

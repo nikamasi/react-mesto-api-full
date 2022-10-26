@@ -1,4 +1,4 @@
-const BASE_URL = "https://auth.nomoreparties.co";
+const BASE_URL = "http://api.angel.nomoredomains.icu";
 const headers = {
   "Content-Type": "application/json",
 };
@@ -16,12 +16,12 @@ export function signIn({ password, email }) {
     method: "POST",
     headers: headers,
     body: JSON.stringify({ password, email }),
-  }).then((res) => _handleResponse(res, "Ошибка при входе"));
+  }).then((res) => _handleResponse(res, "Ошибка при входе"))
+  .then((res) => res);
 }
 
 export function signUp({ password, email }) {
-  console.log(password, email);
-  return fetch(`${BASE_URL}/signup`, {
+  return fetch(`${BASE_URL}/signup/`, {
     method: "POST",
     headers: headers,
     body: JSON.stringify({ password, email }),
@@ -31,7 +31,7 @@ export function signUp({ password, email }) {
 export function getContent(token) {
   return fetch(`${BASE_URL}/users/me`, {
     method: "GET",
-    headers: { ...headers, Authorization: `Bearer ${token}` },
+    headers: { ...headers, "Authorization": `Bearer ${token}` },
   }).then((res) =>
     _handleResponse(res, "Ошибка при получении данных пользователя по токену")
   );

@@ -13,6 +13,7 @@ function Header({ isLogged, email, onLogout }) {
     if (menuIsOpen) {
       setMenuIsOpen(false);
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isLogged]);
 
   return (
@@ -61,9 +62,9 @@ function Header({ isLogged, email, onLogout }) {
           }`}
           onClick={onClick}
         >
-          <span class="menu-button__bar" />
-          <span class="menu-button__bar" />
-          <span class="menu-button__bar" />
+          <span className="menu-button__bar" />
+          <span className="menu-button__bar" />
+          <span className="menu-button__bar" />
         </div>
       ) : (
         <></>

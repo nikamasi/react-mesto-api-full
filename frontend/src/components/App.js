@@ -30,6 +30,7 @@ function App() {
     _id: "",
     avatar: "",
     about: "",
+    token: ""
   });
   const [email, setEmail] = useState("");
   const [dataIsLoading, setDataIsLoading] = useState();
@@ -48,9 +49,9 @@ function App() {
   }
 
   function handleCardLike(card) {
-    const isLiked = card.likes.some((i) => i._id === currentUser._id);
+    const isLiked = card.likes.some((i) => i === currentUser._id);
     api
-      .changeLikeCardStatus(card._id, !isLiked, currentUser._id)
+      .changeLikeCardStatus(card._id, !isLiked)
       .then((newCard) => {
         setCards((cards) =>
           cards.map((c) => (c._id === card._id ? newCard : c))
@@ -128,12 +129,13 @@ function App() {
     api
       .saveUserInfo(name, bio)
       .then((data) => {
-        setCurrentUser(data);
+        setCurrentUser(data)
         closeAllPopups();
       })
       .catch((error) => console.log(error))
       .finally(() => {
         setDataIsLoading(false);
+
       });
   }
 
@@ -173,7 +175,7 @@ function App() {
     auth
       .getContent(jwt)
       .then((data) => {
-        setEmail(data.data.email);
+        setEmail(data.email);
         setIsLogged(true);
       })
       .catch((err) => console.log(err));
@@ -214,7 +216,13 @@ function App() {
         setIsLogged(true);
         setEmail(data.email);
         localStorage.setItem("jwt", res.token);
-      })
+        api
+        .getUserInfo()
+        .then((data) => {
+          setCurrentUser(data);
+        })
+        .catch((err) => console.log(err))
+        })
       .catch(() => {
         setIsInfoTooltipOpen(true);
         setInfoTooltipMessage({
@@ -227,7 +235,7 @@ function App() {
   function handleSignUp(data) {
     return auth
       .signUp(data)
-      .then(() => {
+      .then((token) => {
         setIsInfoTooltipOpen(true);
         setInfoTooltipMessage({
           text: "Вы успешно зарегистрировались",

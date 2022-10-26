@@ -6,11 +6,11 @@ function Card(props) {
 
   const currentUser = useContext(CurrentUserContext);
 
-  const isOwn = card.owner._id === currentUser._id;
+  const isOwn = card.owner === currentUser._id;
   const cardDeleteButtonClassName = `gallery__item-remove-button button ${
     isOwn ? "gallery__item-remove-button_active" : ""
   }`;
-  const isLiked = card.likes.some((i) => i._id === currentUser._id);
+  const isLiked = card.likes.some((i) => i === currentUser._id);
   const cardLikeButtonClassName = `gallery__like-button ${
     isLiked ? "gallery__like-button_active" : ""
   }`;
