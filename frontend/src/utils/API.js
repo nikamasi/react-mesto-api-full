@@ -120,7 +120,7 @@ class API {
 }
 
 export const api = new API({
-  baseUrl: "http://api.angel.nomoredomains.icu",
+  baseUrl: "https://api.angel.nomoredomains.icu",
   headers: {
     "Content-Type": "application/json"
   }

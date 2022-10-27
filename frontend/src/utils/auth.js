@@ -1,4 +1,4 @@
-const BASE_URL = "http://api.angel.nomoredomains.icu";
+const BASE_URL = "https://api.angel.nomoredomains.icu";
 const headers = {
   "Content-Type": "application/json",
 };
