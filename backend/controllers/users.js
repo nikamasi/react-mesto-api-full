@@ -2,7 +2,6 @@ const { StatusCodes } = require('http-status-codes');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const BadRequestError = require('../errors/BadRequestError');
-const AuthError = require('../errors/AuthError');
 const NotFoundError = require('../errors/NotFoundError');
 const ConflictError = require('../errors/ConflictError');
 const User = require('../models/user');
@@ -55,7 +54,7 @@ const createUser = (req, res, next) => {
             next(e);
           }
         });
-    });
+    }).catch(next);
 };
 
 const login = (req, res, next) => {
@@ -69,9 +68,7 @@ const login = (req, res, next) => {
       );
       return res.send({ token });
     })
-    .catch((err) => {
-      next(new AuthError(err.message));
-    });
+    .catch(next);
 };
 
 const updateUser = (req, res, next) => {

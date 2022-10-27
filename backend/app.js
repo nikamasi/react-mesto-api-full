@@ -1,15 +1,11 @@
 require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
-const { errors, celebrate, Joi } = require('celebrate');
-const { cardsRouter } = require('./routes/cards');
-const { usersRouter } = require('./routes/users');
-const { createUser, login } = require('./controllers/users');
-const NotFoundError = require('./errors/NotFoundError');
-const auth = require('./middlewares/auth');
-const { urlRegex } = require('./utils/regex');
+const { errors } = require('celebrate');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 const cors = require('./middlewares/cors');
+const router = require('./routes/index');
+const errorHandler = require('./middlewares/errorHandler');
 
 const { PORT = 3000 } = process.env;
 const app = express();
@@ -28,37 +24,13 @@ app.get('/crash-test', () => {
     throw new Error('Сервер сейчас упадёт');
   }, 0);
 });
-app.post('/signup', celebrate({
-  body: Joi.object().keys({
-    password: Joi.string().required(),
-    email: Joi.string().email().required().min(3),
-    name: Joi.string().min(2).max(30),
-    about: Joi.string().min(2).max(30),
-    avatar: Joi.string().regex(urlRegex),
-  }),
-}), createUser);
 
-app.post('/signin', celebrate({
-  body: Joi.object().keys({
-    password: Joi.string().required(),
-    email: Joi.string().email().required(),
-  }),
-}), login);
-
-app.use('/users', auth, usersRouter);
-app.use('/cards', auth, cardsRouter);
-app.use((req, res, next) => {
-  next(new NotFoundError('Invalid URL or request method.'));
-});
+app.use(router);
 
 app.use(errorLogger);
 
 app.use(errors());
-// eslint-disable-next-line no-unused-vars
-app.use((err, req, res, next) => {
-  const statusCode = err.statusCode || 500;
-  const message = statusCode === 500 ? 'Server error' : err.message;
-  res.status(statusCode).send({ message });
-});
+
+app.use(errorHandler);
 
 app.listen(PORT);
