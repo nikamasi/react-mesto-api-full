@@ -30,7 +30,6 @@ function App() {
     _id: "",
     avatar: "",
     about: "",
-    token: ""
   });
   const [email, setEmail] = useState("");
   const [dataIsLoading, setDataIsLoading] = useState();
@@ -49,9 +48,9 @@ function App() {
   }
 
   function handleCardLike(card) {
-    const isLiked = card.likes.some((i) => i === currentUser._id);
+    const isLiked = card.likes.some((i) => i._id === currentUser._id);
     api
-      .changeLikeCardStatus(card._id, !isLiked)
+      .changeLikeCardStatus(card._id, !isLiked, currentUser._id)
       .then((newCard) => {
         setCards((cards) =>
           cards.map((c) => (c._id === card._id ? newCard : c))
@@ -129,13 +128,12 @@ function App() {
     api
       .saveUserInfo(name, bio)
       .then((data) => {
-        setCurrentUser(data)
+        setCurrentUser(data);
         closeAllPopups();
       })
       .catch((error) => console.log(error))
       .finally(() => {
         setDataIsLoading(false);
-
       });
   }
 
@@ -175,7 +173,7 @@ function App() {
     auth
       .getContent(jwt)
       .then((data) => {
-        setEmail(data.email);
+        setEmail(data.data.email);
         setIsLogged(true);
       })
       .catch((err) => console.log(err));
@@ -216,13 +214,7 @@ function App() {
         setIsLogged(true);
         setEmail(data.email);
         localStorage.setItem("jwt", res.token);
-        api
-        .getUserInfo()
-        .then((data) => {
-          setCurrentUser(data);
-        })
-        .catch((err) => console.log(err))
-        })
+      })
       .catch(() => {
         setIsInfoTooltipOpen(true);
         setInfoTooltipMessage({
