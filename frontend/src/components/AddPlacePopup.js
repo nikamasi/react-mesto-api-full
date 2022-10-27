@@ -13,6 +13,7 @@ function AddPlacePopup(props) {
 
   useEffect(() => {
     setValues({"image-name": "", "image-link": ""})
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [props.isOpen]);
 
   return (

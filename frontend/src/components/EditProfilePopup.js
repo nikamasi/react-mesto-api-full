@@ -1,4 +1,4 @@
-import { useState, useContext, useEffect } from "react";
+import { useContext, useEffect } from "react";
 import PopupWithForm from "./PopupWithForm.js";
 import { CurrentUserContext } from "../contexts/CurrentUserContext.js";
 import { useForm } from "../hooks/useForm.js";
@@ -9,6 +9,7 @@ function EditProfilePopup(props) {
 
   useEffect(() => {
     setValues({ name: currentUser.name, about: currentUser.about });
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [props.isOpen, currentUser]);
 
   function handleSubmit(e) {
