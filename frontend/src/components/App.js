@@ -235,7 +235,7 @@ function App() {
   function handleSignUp(data) {
     return auth
       .signUp(data)
-      .then((token) => {
+      .then(() => {
         setIsInfoTooltipOpen(true);
         setInfoTooltipMessage({
           text: "Вы успешно зарегистрировались",
