@@ -30,6 +30,7 @@ function App() {
     _id: "",
     avatar: "",
     about: "",
+    token: "",
   });
   const [email, setEmail] = useState("");
   const [dataIsLoading, setDataIsLoading] = useState();
@@ -48,9 +49,9 @@ function App() {
   }
 
   function handleCardLike(card) {
-    const isLiked = card.likes.some((i) => i._id === currentUser._id);
+    const isLiked = card.likes.some((i) => i === currentUser._id);
     api
-      .changeLikeCardStatus(card._id, !isLiked, currentUser._id)
+      .changeLikeCardStatus(card._id, !isLiked)
       .then((newCard) => {
         setCards((cards) =>
           cards.map((c) => (c._id === card._id ? newCard : c))
@@ -173,7 +174,7 @@ function App() {
     auth
       .getContent(jwt)
       .then((data) => {
-        setEmail(data.data.email);
+        setEmail(data.email);
         setIsLogged(true);
       })
       .catch((err) => console.log(err));
@@ -184,22 +185,26 @@ function App() {
   }, []);
 
   useEffect(() => {
-    api
-      .getInitialCards()
-      .then((data) => {
-        setCards(data);
-      })
-      .catch((err) => console.log(err));
-  }, []);
+    if (isLogged) {
+      api
+        .getInitialCards()
+        .then((data) => {
+          setCards(data);
+        })
+        .catch((err) => console.log(err));
+    }
+  }, [isLogged]);
 
   useEffect(() => {
-    api
-      .getUserInfo()
-      .then((data) => {
-        setCurrentUser(data);
-      })
-      .catch((err) => console.log(err));
-  }, []);
+    if (isLogged) {
+      api
+        .getUserInfo()
+        .then((data) => {
+          setCurrentUser(data);
+        })
+        .catch((err) => console.log(err));
+    }
+  }, [isLogged]);
 
   useEffect(() => {
     if (isLogged) {
@@ -214,6 +219,12 @@ function App() {
         setIsLogged(true);
         setEmail(data.email);
         localStorage.setItem("jwt", res.token);
+        api
+          .getUserInfo()
+          .then((data) => {
+            setCurrentUser(data);
+          })
+          .catch((err) => console.log(err));
       })
       .catch(() => {
         setIsInfoTooltipOpen(true);
