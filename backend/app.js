@@ -23,6 +23,11 @@ app.use(requestLogger);
 app.use(cors);
 app.use(express.json());
 
+app.get('/crash-test', () => {
+  setTimeout(() => {
+    throw new Error('Сервер сейчас упадёт');
+  }, 0);
+});
 app.post('/signup', celebrate({
   body: Joi.object().keys({
     password: Joi.string().required(),
