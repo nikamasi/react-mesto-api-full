@@ -3,6 +3,11 @@
   
 Пожалуйста, прикрепите в это описание ссылку на сайт, размещенный на Яндекс.Облаке.
 
+https://github.com/nikamasi/react-mesto-api-full
+
 IP 158.160.6.221
+
 Frontend https://angel.nomoredomains.icu
+
+
 Backend https://api.angel.nomoredomains.icu
